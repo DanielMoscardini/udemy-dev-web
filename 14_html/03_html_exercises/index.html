@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>html exercises</title>
+    <style>
+      #content {
+        padding: 40px 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>HTML Exercises</header>
+
+    <nav>
+      <!-- wd-nav = webdevelopement nav, just a customAttr -->
+      <a href wd-nav="./exercises/00_test.html">00 - Test</a> <br />
+      <a href wd-nav="./exercises/01_text.html">01 - Text</a> <br />
+      <a href wd-nav="./exercises/02_text2.html">02 - Text2</a>
+    </nav>
+
+    <section id="content"></section>
+
+    <footer>
+      <br />
+      Studying web development!
+    </footer>
+
+    <script>
+      document.querySelectorAll('[wd-nav]').forEach(link => {
+        const content = document.querySelector('#content');
+
+        link.onclick = function (e) {
+          e.preventDefault();
+          fetch(link.getAttribute('wd-nav')) // AJAX request
+            .then(resp => resp.text())
+            .then(html => (content.innerHTML = html)); // replace the content id for the link content
+        };
+      });
+    </script>
+  </body>
+</html>
